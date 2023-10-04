@@ -15,7 +15,12 @@ const db = knex({
   client: 'pg',
   connection: {
     connectionString: 'process.env.DATABASE_URL',
-    ssl: true,
+    ssl: { rejectUnauthorized: false },
+    host: process.env.DATABASE_HOST,
+    PORT: 5432,
+    USER: process.env.DATABASE_USER,
+    password: provess.env.DATABASE_PW,
+    database: process.env.DATABASE_DB_XFPS,
   },
 });
 
