@@ -1,15 +1,18 @@
-const Clarifai = require('clarifai');
-
 const app = new Clarifai.App({
   apiKey: '110b9326dd5c47a9b254093ad1fc205c',
 });
-
 const handleApiCall = (req, res) => {
-  console.log('Request Body:', req.body); // Log the request body
-  app.models
-    .predict(Clarifai.FACE_DETECT_MODEL, 'image link')
-    .then((response) => console.log(response))
-    .catch((err) => console.log(err));
+  console.log('imageurl: ', req.body.input);
+  fetch(
+    'https://api.clarifai.com/v2/models/face-detection/outputs',
+    returnClarifaiRequestOptions(req.body.input)
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Clarifai API response:', data);
+      res.json(data);
+    })
+    .catch((err) => res.status(400).json('unable to work with api'));
 };
 
 const handleImage = (req, res, db) => {
