@@ -35,9 +35,15 @@ app.get('/', (req, res) => {
 });
 app.post('/signin', signin.handleSignin(db, bcrypt));
 
-app.post('/register', (req, res) => {
-  register.handleRegister(req, res, db, bcrypt);
+app.post('/register', async (req, res) => {
+  try {
+    await register.handleRegister(req, res, db, bcrypt);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
+
 app.get('/profile/:id', (req, res) => {
   profile.handleProfileGet(req, res, db);
 });
@@ -50,5 +56,5 @@ app.post('/imageUrl', (req, res) => {
 });
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log('app is running on port ${process.env.port}');
+  console.log(`app is running on port ${process.env.PORT}`);
 });
