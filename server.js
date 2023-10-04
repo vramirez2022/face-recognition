@@ -35,13 +35,8 @@ app.get('/', (req, res) => {
 });
 app.post('/signin', signin.handleSignin(db, bcrypt));
 
-app.post('/register', async (req, res) => {
-  try {
-    await register.handleRegister(req, res, db, bcrypt);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
+app.post('/register', (req, res) => {
+  register.handleRegister(req, res, db, bcrypt);
 });
 
 app.get('/profile/:id', (req, res) => {
