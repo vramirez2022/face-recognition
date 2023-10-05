@@ -40,15 +40,11 @@ const handleApiCall = (req, res) => {
     'https://api.clarifai.com/v2/models/' + 'face-detection' + '/outputs',
     returnClarifaiRequestOptions(req.body.input)
   )
-    .then((response) => {
-      console.log('Clarifai API response status:', response.status);
-      return response.json();
+    .then((response) => response.text())
+    .then((result) => {
+      res.json(result);
     })
-    .then((data) => {
-      console.log('Clarifai API response', data);
-      res.json(data);
-    })
-    .catch((err) => res.status(400).json('unable to work with API'));
+    .catch((err) => res.status(500).json('Unable to communicate with API'));
 };
 
 const handleImage = (req, res, db) => {
