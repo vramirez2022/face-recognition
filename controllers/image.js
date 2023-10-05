@@ -40,7 +40,10 @@ const handleApiCall = (req, res) => {
     'https://api.clarifai.com/v2/models/' + 'face-detection' + '/outputs',
     returnClarifaiRequestOptions(req.body.input)
   )
-    .then((response) => response.json())
+    .then((response) => {
+      console.log('Clarifai API response status:', response.status);
+      return response.json();
+    })
     .then((data) => {
       console.log('Clarifai API response', data);
       res.json(data);
