@@ -5,7 +5,6 @@ const cors = require('cors');
 const knex = require('knex');
 const app = express();
 require('dotenv').config();
-const fetch = require('fetch');
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
