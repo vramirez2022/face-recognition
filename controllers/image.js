@@ -1,4 +1,5 @@
 const Clarifai = require('clarifai');
+import fetch from 'fetch';
 
 const returnClarifaiRequestOptions = (imageUrl) => {
   const PAT = '110b9326dd5c47a9b254093ad1fc205c';
@@ -35,7 +36,7 @@ const returnClarifaiRequestOptions = (imageUrl) => {
   return requestOptions;
 };
 
-const handleApiCall = (req, res, imageUrl) => {
+const handleApiCall = (req, res) => {
   console.log('imageurl: ', req.body.input);
   fetch(
     'https://api.clarifai.com/v2/models/face-detection/outputs',
