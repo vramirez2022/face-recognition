@@ -49,7 +49,7 @@ const handleApiCall = (req, res, imageUrl) => {
       }
     })
     .then((result) => {
-      console.log(result);
+      console.log('Clarifai API response:', result);
       res.json(result);
     })
     .catch((err) => {
