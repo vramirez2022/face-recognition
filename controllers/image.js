@@ -8,6 +8,7 @@ const handleApiCall = (req, res, imageUrl) => {
   const APP_ID = 'face-detection';
   const MODEL_ID = 'face-detection';
   const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';
+  const IMAGE_URL = imageUrl;
 
   const raw = JSON.stringify({
     user_app_id: {
@@ -18,7 +19,7 @@ const handleApiCall = (req, res, imageUrl) => {
       {
         data: {
           image: {
-            url: imageUrl,
+            url: IMAGE_URL,
           },
         },
       },
@@ -42,9 +43,10 @@ const handleApiCall = (req, res, imageUrl) => {
       '/outputs',
     requestOptions
   )
-    .then((response) => {
-      if (response.status === 200) {
-        return response.json();
+    .then((data) => {
+      res.json(data);
+      if (data.status === 200) {
+        return data.json();
       } else {
         throw new Error('Unable to work with API');
       }
