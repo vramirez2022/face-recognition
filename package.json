@@ -18,8 +18,7 @@
     "fetch": "^1.1.0",
     "knex": "^2.5.1",
     "node-fetch": "^3.3.2",
-    "pg": "^8.11.3",
-    "type": "module"
+    "pg": "^8.11.3"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

@@ -1,5 +1,5 @@
 const Clarifai = require('clarifai');
-import fetch from 'node-fetch';
+const fetch - require ('node-fetch').default;
 
 const MODEL_ID = 'face-detection';
 const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';
