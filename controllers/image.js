@@ -37,15 +37,13 @@ const returnClarifaiRequestOptions = (imageUrl) => {
 const handleApiCall = (req, res) => {
   console.log('imageurl: ', req.body.input);
   fetch(
-    'https://api.clarifai.com/v2/models/' + 'face-detection' + '/outputs',
+    'https://api.clarifai.com/v2/models/face-detection/outputs',
     returnClarifaiRequestOptions(req.body.input)
   )
     .then((response) => response.json())
-    .then((data) => {
-      res.json(data);
-    })
+    .then((data) => res.json(data))
     .catch((error) =>
-      res.status(500).json('Unable to communicate with API', error)
+      res.status(500).json({ error: 'Unable to communicate with API' })
     );
 };
 
