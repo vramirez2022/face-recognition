@@ -1,5 +1,5 @@
 const Clarifai = require('clarifai');
-const fetch = require('node-fetch').default;
+const fetch = require('node-fetch');
 
 const MODEL_ID = 'face-detection';
 const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';
@@ -44,8 +44,8 @@ const handleApiCall = (req, res) => {
     `https://api.clarifai.com/v2/models/${MODEL_ID}/versions/${MODEL_VERSION_ID}/outputs`,
     requestOptions
   )
-    .then((response) => response.json())
     .then((data) => {
+      res.json(data);
       console.log('Clarifai API response', data);
     })
     .catch((error) =>
