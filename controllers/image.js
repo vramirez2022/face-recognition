@@ -1,5 +1,5 @@
 const Clarifai = require('clarifai');
-const fetch = require('node-fetch');
+const fetch = require('fetch');
 
 const returnClarifaiRequestOptions = (imageUrl) => {
   const PAT = '110b9326dd5c47a9b254093ad1fc205c';
