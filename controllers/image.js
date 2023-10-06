@@ -1,4 +1,5 @@
 const Clarifai = require('clarifai');
+const { response } = require('express');
 const fetch = require('node-fetch');
 
 const handleApiCall = (req, res, imageUrl) => {
@@ -48,9 +49,9 @@ const handleApiCall = (req, res, imageUrl) => {
         throw new Error('Unable to work with API');
       }
     })
-    .then((result) => {
-      console.log('Clarifai API response:', result);
-      res.json(result);
+    .then((data) => {
+      console.log('Clarifai API response:', data);
+      res.json(data);
     })
     .catch((err) => {
       console.error(err);
