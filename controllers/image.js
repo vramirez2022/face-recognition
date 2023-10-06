@@ -41,10 +41,10 @@ const handleApiCall = (req, res) => {
     'https://api.clarifai.com/v2/models/face-detection/outputs',
     returnClarifaiRequestOptions(req.body.input)
   )
-    .then((response) => response.json())
+    .then((response) => response.text())
     .then((result) => {
       console.log(result);
-      res.json(result); // Send the result as a response to the client
+      res.json(result);
     })
     .catch((error) =>
       res.status(500).json({ error: 'Unable to communicate with API' })
