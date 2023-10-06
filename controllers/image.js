@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 const handleApiCall = (req, res, imageUrl) => {
   const PAT = '110b9326dd5c47a9b254093ad1fc205c';
   const USER_ID = 'wan0qa9g44e9';
-  const APP_ID = 'face-detection';
+  const APP_ID = 'main';
   const MODEL_ID = 'face-detection';
   const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';
 
