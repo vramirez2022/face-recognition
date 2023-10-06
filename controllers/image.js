@@ -43,8 +43,9 @@ const handleApiCall = (req, res) => {
     returnClarifaiRequestOptions(req.body.input)
   )
     .then((response) => response.json())
-    .then((parsedResult) => {
-      console.log('Clarifai API response', parsedResult);
+    .then((data) => {
+      console.log('Clarifai API response', data);
+      console.log(returnClarifaiRequestOptions);
     })
     .catch((error) =>
       res.status(500).json({ error: 'Unable to communicate with API' })
