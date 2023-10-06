@@ -43,10 +43,10 @@ const handleApiCall = (req, res, imageUrl) => {
       '/outputs',
     requestOptions
   )
-    .then((data) => {
-      res.json(data);
-      if (data.status === 200) {
-        return data.json();
+    .then((response) => {
+      res.json(response);
+      if (response.status === 200) {
+        return response.json();
       } else {
         throw new Error('Unable to work with API');
       }
