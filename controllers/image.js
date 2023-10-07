@@ -35,17 +35,31 @@ const handleApiCall = (req, res, imageUrl) => {
     body: raw,
   };
 
-  const response = fetch(
+  fetch(
     'https://api.clarifai.com/v2/models/' +
       MODEL_ID +
       '/versions/' +
       MODEL_VERSION_ID +
       '/outputs',
     requestOptions
-  );
-  const data = response.json();
-  return data;
+  )
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        throw new Error('Server responded with an error');
+      }
+    })
+    .then((data) => {
+      console.log('Data from server:', data);
+      res.json(data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      res.status(500).json('Internal Server Error');
+    });
 };
+
 const handleImage = (req, res, db) => {
   const { id } = req.body;
   db('users')
